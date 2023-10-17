@@ -10,4 +10,10 @@ export interface IBuildOptions {
     mode: BuildModeType;
     paths: IBuildPaths;
     isDevMode: boolean;
+    port: number;
+}
+
+export interface IBuildEnv {
+    mode: BuildModeType;
+    port: number;
 }
