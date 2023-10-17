@@ -4,7 +4,7 @@ import {buildWebpackConfig} from "./config/build/buildWebpackConfig";
 import {IBuildEnv, IBuildPaths} from "./config/build/types/config";
 
 const paths: IBuildPaths = {
-    entryPath: path.resolve(__dirname, 'src', 'index.ts'),
+    entryPath: path.resolve(__dirname, 'src', 'index.tsx'),
     outputPath: path.resolve(__dirname, 'build'),
     htmlPath: path.resolve(__dirname, 'public', 'index.html'),
 };

@@ -18,7 +18,7 @@ export function buildWebpackConfig(options: IBuildOptions): webpack.Configuratio
         },
         plugins: buildPlugins(htmlPath),
         module: {
-            rules: buildLoaders(),
+            rules: buildLoaders(isDevMode),
         },
         resolve: buildResolvers(),
         devtool: isDevMode ? 'inline-source-map' : undefined,
