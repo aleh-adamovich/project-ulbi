@@ -1,6 +1,8 @@
-import {lazy, Suspense, useEffect} from "react";
-import './index.scss';
-import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
+import {lazy, Suspense} from "react";
+import './styles/index.scss';
+import {Link, Route, Routes} from "react-router-dom";
+import {useTheme} from "./theme/useTheme";
+import {classNames} from "./helpers/classNames/classNames";
 
 const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
 const AboutPage = lazy(() => new Promise((resolve) => {
@@ -9,18 +11,26 @@ const AboutPage = lazy(() => new Promise((resolve) => {
 }));
 
 export const App = () => {
+    const {theme, handleTheme} = useTheme();
+// `app ${theme}`
     return (
-        <div className="app">
-            <BrowserRouter>
-                <Link to='/'>Main Page</Link>
-                <Link to='/about'>About Page</Link>
-                <Suspense fallback={<div>Loading...</div>}>
-                    <Routes>
-                        <Route path='/' element={<MainPage/>}/>
-                        <Route path='/about' element={<AboutPage/>}/>
-                    </Routes>
-                </Suspense>
-            </BrowserRouter>
+        <div className={classNames('app', {}, theme)}>
+            <Link to='/'>Main Page</Link>
+            <Link to='/about'>About Page</Link>
+
+            <div style={{
+                border: '1px solid #ccc',
+                padding: '10px'
+            }}>
+                <button onClick={handleTheme}>Toggle theme</button>
+            </div>
+
+            <Suspense fallback={<div>Loading...</div>}>
+                <Routes>
+                    <Route path='/' element={<MainPage/>}/>
+                    <Route path='/about' element={<AboutPage/>}/>
+                </Routes>
+            </Suspense>
         </div>
     )
 }
