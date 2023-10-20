@@ -6,7 +6,7 @@ import {buildResolvers} from "./buildResolvers";
 import {buildDevServer} from "./buildDevServer";
 
 export function buildWebpackConfig(options: IBuildOptions): webpack.Configuration {
-    const {mode, paths: {entryPath, outputPath, htmlPath}, isDevMode, port} = options;
+    const {mode, paths: {entryPath, outputPath, htmlPath, srcPath}, isDevMode, port} = options;
 
     return {
         mode,
@@ -20,7 +20,7 @@ export function buildWebpackConfig(options: IBuildOptions): webpack.Configuratio
         module: {
             rules: buildLoaders(isDevMode),
         },
-        resolve: buildResolvers(),
+        resolve: buildResolvers(srcPath),
         devtool: isDevMode ? 'inline-source-map' : undefined,
         devServer: isDevMode ? buildDevServer(port) : undefined,
     }

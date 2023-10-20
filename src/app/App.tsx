@@ -1,18 +1,14 @@
-import {lazy, Suspense} from "react";
-import './styles/index.scss';
+import {Suspense} from "react";
 import {Link, Route, Routes} from "react-router-dom";
-import {useTheme} from "./theme/useTheme";
-import {classNames} from "./helpers/classNames/classNames";
-
-const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
-const AboutPage = lazy(() => new Promise((resolve) => {
-    // @ts-ignore
-    setTimeout(() => resolve(import('./pages/AboutPage/AboutPage')), 1000);
-}));
+import './styles/index.scss';
+import {useTheme} from "app/providers/ThemeProvider";
+import {classNames} from "shared/lib/classNames/classNames";
+import {AboutPage} from "pages/AboutPage";
+import {MainPage} from "pages/MainPage";
 
 export const App = () => {
     const {theme, handleTheme} = useTheme();
-// `app ${theme}`
+
     return (
         <div className={classNames('app', {}, theme)}>
             <Link to='/'>Main Page</Link>
