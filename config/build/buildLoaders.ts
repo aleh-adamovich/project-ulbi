@@ -1,16 +1,16 @@
-import webpack from "webpack";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import webpack from 'webpack';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 export function buildLoaders(isDevMode: boolean): webpack.RuleSetRule[] {
     const babelLoader = {
         test: /\.(js|jsx|tsx)$/,
         exclude: /node_modules/,
         use: {
-            loader: "babel-loader",
+            loader: 'babel-loader',
             options: {
-                presets: ['@babel/preset-env']
-            }
-        }
+                presets: ['@babel/preset-env'],
+            },
+        },
     };
 
     const svgLoader = {
@@ -21,17 +21,17 @@ export function buildLoaders(isDevMode: boolean): webpack.RuleSetRule[] {
     const cssLoader = {
         test: /\.s[ac]ss$/i,
         use: [
-            isDevMode? "style-loader" : MiniCssExtractPlugin.loader,
+            isDevMode ? 'style-loader' : MiniCssExtractPlugin.loader,
             {
-                loader: "css-loader",
+                loader: 'css-loader',
                 options: {
                     modules: {
                         auto: (resPath: string) => Boolean(resPath.includes('.module')),
-                        localIdentName: isDevMode ? "[path][name]__[local]--[hash:base64:5]" : "[hash:base64:8]"
-                    }
-                }
+                        localIdentName: isDevMode ? '[path][name]__[local]--[hash:base64:5]' : '[hash:base64:8]',
+                    },
+                },
             },
-            "sass-loader",
+            'sass-loader',
         ],
     };
 
@@ -42,13 +42,13 @@ export function buildLoaders(isDevMode: boolean): webpack.RuleSetRule[] {
     };
 
     const fileLoader = {
-            test: /\.(png|jpe?g|gif)$/i,
-            use: [
-                {
-                    loader: 'file-loader',
-                },
-            ],
-        };
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+            {
+                loader: 'file-loader',
+            },
+        ],
+    };
 
     // порядок loaders очень важен. сначала babelLoader, потом typescriptLoader
     return [
@@ -57,5 +57,5 @@ export function buildLoaders(isDevMode: boolean): webpack.RuleSetRule[] {
         cssLoader,
         svgLoader,
         fileLoader,
-    ]
+    ];
 }

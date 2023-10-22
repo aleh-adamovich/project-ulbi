@@ -1,13 +1,13 @@
-import {classNames} from "shared/lib/classNames/classNames";
+import { classNames } from 'shared/lib/classNames/classNames';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { useTranslation } from 'react-i18next';
 import cls from './LangSwitcher.module.scss';
-import {Button, ButtonTheme} from "shared/ui/Button/Button";
-import {useTranslation} from "react-i18next";
 
 interface ILangSwitcherProps {
     className?: string;
 }
 
-export const LangSwitcher = ({className}: ILangSwitcherProps) => {
+export const LangSwitcher = ({ className }: ILangSwitcherProps) => {
     const { t, i18n } = useTranslation();
 
     const handleClick = () => {
@@ -22,5 +22,5 @@ export const LangSwitcher = ({className}: ILangSwitcherProps) => {
         >
             {t('langSwitcherBtn')}
         </Button>
-    )
-}
+    );
+};
