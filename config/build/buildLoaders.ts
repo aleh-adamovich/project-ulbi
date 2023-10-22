@@ -2,6 +2,17 @@ import webpack from "webpack";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 export function buildLoaders(isDevMode: boolean): webpack.RuleSetRule[] {
+    const babelLoader = {
+        test: /\.(js|jsx|tsx)$/,
+        exclude: /node_modules/,
+        use: {
+            loader: "babel-loader",
+            options: {
+                presets: ['@babel/preset-env']
+            }
+        }
+    };
+
     const svgLoader = {
         test: /\.svg$/,
         use: ['@svgr/webpack'],
@@ -39,10 +50,12 @@ export function buildLoaders(isDevMode: boolean): webpack.RuleSetRule[] {
             ],
         };
 
+    // порядок loaders очень важен. сначала babelLoader, потом typescriptLoader
     return [
+        babelLoader,
         typescriptLoader,
         cssLoader,
         svgLoader,
-        fileLoader
+        fileLoader,
     ]
 }
