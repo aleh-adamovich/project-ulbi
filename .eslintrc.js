@@ -43,6 +43,7 @@ module.exports = {
         'no-underscore-dangle': 'off',
         'i18next/no-literal-string': [2, { markupOnly: true }],
         'max-len': ['error', { ignoreComments: true, code: 100, comments: 100 }],
+        'react/state-in-constructor': 'off',
     },
     globals: {
         __IS_DEV__: true,

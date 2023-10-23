@@ -1,4 +1,6 @@
 {
   "langSwitcherBtn": "Russian",
-  "pageNotFound": "Page not found"
+  "pageNotFound": "Page not found",
+  "errorText": "Ooops... Some error occurred",
+  "errorBtnText": "Reload page"
 }

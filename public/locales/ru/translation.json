@@ -1,4 +1,6 @@
 {
   "langSwitcherBtn": "Английский",
-  "pageNotFound": "Страница не найдена"
+  "pageNotFound": "Страница не найдена",
+  "errorText": "Упс... Непредвиденная ошибка",
+  "errorBtnText": "Обновить страницу"
 }
