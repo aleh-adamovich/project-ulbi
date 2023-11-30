@@ -1,12 +1,11 @@
+import path from 'path';
+
 export default {
     clearMocks: true,
     coveragePathIgnorePatterns: [
         '\\\\node_modules\\\\',
     ],
     testEnvironment: 'jsdom',
-    moduleDirectories: [
-        'node_modules',
-    ],
     moduleFileExtensions: [
         'js',
         'jsx',
@@ -15,13 +14,22 @@ export default {
         'json',
         'node',
     ],
+    moduleDirectories: [
+        'node_modules',
+    ],
+    // позволяет использовать абсолютные пути в тестах
+    modulePaths: ['<rootDir>/src'],
     rootDir: '../..',
     // переписать регулярку, если не будет работать (20 - 04:15)
     testMatch: [
         '**/__tests__/**/*.[jt]s?(x)',
         '**/?(*.)+(spec|test).[tj]s?(x)',
     ],
-
+    setupFilesAfterEnv: ['<rootDir>/config/jest/setupTests.ts'],
+    moduleNameMapper: {
+        '\\.(s?css)$': 'identity-obj-proxy',
+        '\\.(svg)': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+    },
     // Indicates whether the coverage information should be collected while executing the test
     // collectCoverage: false,
 

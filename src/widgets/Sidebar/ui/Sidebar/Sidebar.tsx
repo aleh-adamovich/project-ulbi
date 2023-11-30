@@ -14,8 +14,17 @@ export const Sidebar = ({ className }: ISidebarProps) => {
     const handleCollapse = () => setIsCollapsed((prevState) => !prevState);
 
     return (
-        <div className={classNames(cls.sidebar, { [cls.collapsed]: isCollapsed }, [className])}>
-            <button type="button" onClick={handleCollapse}>sidebar</button>
+        <div
+            data-testid="sidebar"
+            className={classNames(cls.sidebar, { [cls.collapsed]: isCollapsed }, [className])}
+        >
+            <button
+                data-testid="sidebar-button"
+                type="button"
+                onClick={handleCollapse}
+            >
+                sidebar
+            </button>
             <div className={cls.switchers}>
                 <ThemeSwitcher />
                 <LangSwitcher />
